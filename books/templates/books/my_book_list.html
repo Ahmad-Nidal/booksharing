@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+
+<body>
+    <h1>Book List</h1>
+    {% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}!</p>
+    {% else %}
+    <p><a href="{% url 'login' %}">Login</a></p>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>
+                    {% if book.available_for_borrow %}
+                    <strong>Available</strong>
+                    {% else %}
+                    <span>Not Available</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'update_availability' book.id %}">Toggle</a>
+                    <form method="post" action="{% url 'delete_book' book.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_book' %}">Add a Book</a>
+    <a href="{% url 'book_list' %}">All Books</a>
+</body>
+
+</html>
