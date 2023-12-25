@@ -1,8 +1,7 @@
-
 {% block content %}
 
   {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
+    <p>If you cant login to your account contact the administrator.</p>
   {% endif %}
 
   {% if next %}
@@ -30,6 +29,7 @@
     <input type="hidden" name="next" value="{{ next }}">
   </form>
 
-  <p>Have not an account? <a href="{% url 'signup' %}">Login</a></p>
+  {# Assumes you set up the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 
 {% endblock %}
