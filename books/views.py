@@ -5,7 +5,15 @@ from .models import Book
 @login_required(login_url='login')
 def book_list(request):
     books = Book.objects.all()
-    return render(request, 'books/book_list.html', {'books': books})
+    # Get the search query from the GET parameters
+    query = request.GET.get('search', '')
+
+    # Filter books based on the search query
+    if query:
+        books = books.filter(title__icontains=query)
+        
+    return render(request, 'books/book_list.html', {'books': books, 'query': query})
+
 
 @login_required(login_url='login')
 def add_book(request):

@@ -17,13 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from booksharing.views import SignUpView
-
+from . import views
 
 urlpatterns = [
-    path('', include('books.urls')),
+    path('', views.home, name='homez'),
     path('admin/', admin.site.urls),
-    path('books/', include('books.urls')),
+    path('', include('books.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', SignUpView.as_view(), name='signup'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
 ]
