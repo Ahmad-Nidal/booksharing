@@ -5,12 +5,6 @@
 <div class="container mt-4">
 
     <h1>My Book List</h1>
-    {% if user.is_authenticated %}
-    <p>Hello, {{ user.username }}!</p>
-    {% else %}
-    <p><a href="{% url 'login' %}" class="btn btn-primary">Login</a></p>
-    {% endif %}
-
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -27,9 +21,9 @@
                 <td>{{ book.author }}</td>
                 <td>
                     {% if book.available_for_borrow %}
-                    <span class="badge badge-success text-dark">Available</span>
+                    <span class="badge text-bg-success">Available</span>
                     {% else %}
-                    <span class="badge badge-danger text-dark">Not Available</span>
+                    <span class="badge text-bg-danger">Not Available</span>
                     {% endif %}
                 </td>
                 <td>

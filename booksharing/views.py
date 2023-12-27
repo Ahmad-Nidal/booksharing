@@ -9,11 +9,11 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy('book_list')
     template_name = 'registration/signup.html'
 
-    def form_valid(self, form):
-        user = form.save(commit=False)
-        user.is_active = False 
-        user.save()
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     user = form.save(commit=False)
+    #     user.is_active = False 
+    #     user.save()
+    #     return super().form_valid(form)
 
 
 def home(request):

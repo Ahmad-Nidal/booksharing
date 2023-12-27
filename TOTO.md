@@ -5,7 +5,7 @@
 - [x] Create account
 
 - [x] UI
-- [ ] db
+- [x] dbc
 - [ ] deploy
 
 Models
